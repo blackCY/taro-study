@@ -2,11 +2,12 @@ import * as React from "react";
 import { Component } from "react";
 import { View, Text } from "@tarojs/components";
 import { AtButton } from "taro-ui";
-import Taro from "@tarojs/taro";
+import Taro, { getCurrentInstance } from "@tarojs/taro";
 import Comp from "@/component";
 
 import "taro-ui/dist/style/components/button.scss"; // 按需引入
 import "./index.scss";
+import Test from "@/component/Test";
 
 const Header = () => <>Header</>;
 const Custom: React.FC<{ num: number }> = ({ num }) => <>Custom - {num}</>;
@@ -15,6 +16,8 @@ export default class App extends Component {
   componentDidShow() {}
 
   componentDidHide() {}
+
+  $instance = getCurrentInstance();
 
   renderHeader = (showHeader: boolean) => {
     return showHeader && <Header />;
@@ -31,6 +34,8 @@ export default class App extends Component {
     console.log(testVariable);
     console.log(variable);
 
+    console.log(this.$instance.router);
+
     return (
       <View className="index">
         <Text
@@ -40,7 +45,14 @@ export default class App extends Component {
         >
           Hello world!
         </Text>
-        <View>{this.renderHeader(true)}</View>
+        <View className="index-header">{this.renderHeader(true)}</View>
+        <View
+          style={{
+            fontSize: Taro.pxTransform(100)
+          }}
+        >
+          行内 CSS 书写测试 px 是否被转换
+        </View>
         {numbers.map(number => {
           let isOdd = false;
 
@@ -56,14 +68,12 @@ export default class App extends Component {
             )
           );
         })}
-
         <AtButton type="primary" size="small">
           按钮
         </AtButton>
-
         <View onClick={() => this.handleClick()}>handleClick 1</View>
-
         <View onClick={e => this.handleClick(e)}>handleClick 2</View>
+        <Test />
       </View>
     );
   }
