@@ -16,5 +16,6 @@ module.exports = {
   mini: {},
   h5: {
     esnextModules: ["taro-ui"]
-  }
+  },
+  plugins: [path.resolve(__dirname, '../src/plugins/test.ts')]
 };
