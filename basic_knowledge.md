@@ -1,5 +1,9 @@
 # Taro 基础知识
 
+## 渐进式入门教程
+
+<https://taro-docs.jd.com/taro/docs/guide/>
+
 ## 入口组件
 
 ### onLaunch(options)
